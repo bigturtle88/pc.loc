@@ -8,7 +8,7 @@ class m160801_192442_comments extends Migration {
         $this->createTable('comments', [
             'id' => $this->primaryKey(),
             'deadline_id' => $this->integer(),
-            'text' => $this->integer(),
+            'text' => $this->text(),
             'date_create' => $this->date(),
         ]);
 
