@@ -7,10 +7,7 @@ use yii\db\ActiveRecord;
 
 class Deadline extends ActiveRecord
 {
-    public $id;
-    public $text;
-    public $status;
-    public $deadline_date;
+   
     
     public static function tableName() {
     
@@ -28,4 +25,6 @@ class Deadline extends ActiveRecord
         
         ];
     }
+    
+  
 }

@@ -6,18 +6,42 @@
 
 
 var AppTodo = {
-  
   init: function () {
-    
+
     this.InitTodo();
-    
+
   },
   InitTodo: function () {
-    
+
     var defaultUrl = 'http://' + window.location.hostname;
     var restUrl = defaultUrl + '/web/deadlines';
-    console.log(defaultUrl);
+
+    this.TodoAjaxView(restUrl);
+
+  },
+  TodoAjaxView: function (restUrl) {
+    $.ajax({
+      method: 'GET',
+      url: restUrl,
+      dataType: 'json',
+      //  data: this.conversionREST(form),
+      success: function (data, textStatus, jqXHR) {
+         
+        this.TodoRender(data);
+        
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        
+        
+      }
+    })
+
+  },
+  TodoRender: function () {
+
+
   }
+
 
 }
 AppTodo.init();
