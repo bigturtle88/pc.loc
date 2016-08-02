@@ -8,20 +8,17 @@ use yii\helpers\Html;
 $this->title = 'Todo task';
 ?>
 <div class="site-index">
-
-    <div id="todoTeble">
-       
-    
-    
-    </div>
-
-
 </div>
 
 <div class="body-content">
 
     <div class="row">
-
+    <div class="col-xs-5 text-center">
+      <ul id="todoTable" class="list-unstyled">
+        
+        
+      </ul>    
+    </div>
     </div>
 
 </div>
