@@ -15,15 +15,9 @@ class TodoController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        
-        $searchModel = new DeadlineSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
+                
         return $this->render('index');
+        
     }
 
 }
