@@ -22,8 +22,8 @@ class Deadline extends ActiveRecord
         return [
             // text and deadline_date are both required
             [['text','deadline_date'], 'required'],
-        
-        ];
+             ['status', 'default', 'value' => 0],
+          ];
     }
     
   

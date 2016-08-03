@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use app\components\AddDeadline;
 
 /* @var $this yii\web\View */
 
@@ -12,14 +12,20 @@ $this->title = 'Todo task';
 
 <div class="body-content">
 
-    <div class="row">
+  <div class="row">
     <div class="col-xs-5 text-center">
       <ul id="todoTable" class="list-unstyled">
-        
-        
-      </ul>    
+
+
+      </ul>
+
+      <?=
+      AddDeadline::widget([
+        'model' => $model,
+      ]);
+      ?>
     </div>
-    </div>
+  </div>
 
 </div>
 </div>

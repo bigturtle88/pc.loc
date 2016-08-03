@@ -29,17 +29,29 @@ class DeadlineController extends ActiveController
     unset($actions['index']);
     return $actions;
   }
-  
-  
+
   public function actionIndex() {
     
     $query =  new \yii\db\Query();
-    $task = $query->select(['deadline.id','deadline.text','deadline.status','deadline.deadline_date','COUNT(comments.deadline_id) as comments_count'])
+    $subQuery = new \yii\db\Query();
+    
+    $comments_count = $subQuery->select('COUNT(comments.deadline_id )')
+      ->where(['comments.deadline_id' =>  'deadline.id'])
+      ->from('comments');
+    
+    $task = $query->select(['deadline.id','deadline.text','deadline.status','deadline.deadline_date','comments_count' => $comments_count])
+      ->where(['deadline.status' =>  1])
       ->from('deadline')
-      ->join('LEFT JOIN', 'comments', 'deadline.id = comments.deadline_id')
-      ->groupBy('comments.deadline_id')
-      ->all();  
-
-    return $task;
+      ->all(); 
+    
+  //  $task = $query->createCommand()->sql;var_dump($task);die();
+    
+    $taskUncheked = $query->select(['deadline.id','deadline.text','deadline.status','deadline.deadline_date','comments_count' => $comments_count])
+      ->where(['deadline.status' =>  '0'])
+      ->from('deadline')
+      ->orderBy(['deadline.deadline_date' => SORT_ASC])
+      ->all();
+        
+    return    $task + $taskUncheked;
   }
 }

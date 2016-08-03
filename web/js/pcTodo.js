@@ -6,28 +6,42 @@
 
 
 var AppTodo = {
+  defaultUrl: 'http://' + window.location.hostname,
+  restUrl: 'http://' + window.location.hostname + '/web/deadlines',
   init: function () {
-
-    this.InitTodo();
-
+    var _this = this;
+    _this.InitTodo(_this);
   },
-  InitTodo: function () {
-
-    var defaultUrl = 'http://' + window.location.hostname;
-    var restUrl = defaultUrl + '/web/deadlines';
-
-    this.TodoAjaxView(restUrl);
-
+  conversionREST: function (form) {
+    var o = {};
+    var a = $(form).serializeArray();
+    var nameArray = {};
+    $.each(a, function () {
+      if (this.name !== '_csrf') {
+        nameArray = this.name.split(/\[(.*?)\]/);
+      }
+      if (o[this.name !== undefined]) {
+        if (!o[this.name.push]) {
+          o[this.name] = [o[this.name]];
+        }
+        o[this.name.push](this.value || '');
+      } else {
+        o[nameArray[1]] = this.value || '';
+      }
+    });
+    return o;
   },
-  TodoAjaxView: function (restUrl) {
+  InitTodo: function (_this) {
+    _this.TodoAjaxView(_this);
+  },
+  TodoAjaxView: function (_this) {
     $.ajax({
       method: 'GET',
-      url: restUrl,
+      url: _this.restUrl,
       dataType: 'json',
       //  data: this.conversionREST(form),
       success: function (data, textStatus, jqXHR) {
-
-        AppTodo.TodoRender(data);
+        _this.TodoRender(data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
 
@@ -45,7 +59,7 @@ var AppTodo = {
 
       stylCheckedState = (val.status == 1) ? styleChecked : styleUnchecked;
 
-      console.log(val);
+   //   console.log(val);
       var checked = 'glyphicon glyphicon-check';
       var checked = 'glyphicon glyphicon-check';
       $("#todoTable").append('<li data-id="' + val.id + '">\n\
@@ -56,15 +70,29 @@ var AppTodo = {
                             <div class="col-xs-3">' + val.deadline_date + '</div>\n\
                             <div class="col-xs-2"><span class="badge">' + val.comments_count + '</span></div></div>\n\
                             </div></li>');
-
-
     }
-
     )
+  },
+  AddDeadline: function (data) {
+    
+    console.log(AppTodo.conversionREST(data));
+    $.ajax({
+      method: 'POST',
+      url: AppTodo.restUrl,
+      dataType: 'json',
+      data: AppTodo.conversionREST(data),
+      success: function (data, textStatus, jqXHR) {
+
+       console.log("Ok: AddDeadline");
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+
+        console.log("Error: AddDeadline");
+      }
+    })
 
 
   }
-
 
 }
 AppTodo.init();

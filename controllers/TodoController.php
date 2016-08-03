@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 
 use yii\web\Controller;
-use app\models\DeadlineSearch;
 use app\models\Deadline;
 class TodoController extends Controller {
 
@@ -15,8 +14,9 @@ class TodoController extends Controller {
      * @return string
      */
     public function actionIndex() {
-                
-        return $this->render('index');
+        
+      $modelDeadline = new Deadline();
+        return $this->render('index',['model'=>$modelDeadline]);
         
     }
 
