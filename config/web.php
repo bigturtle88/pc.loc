@@ -46,6 +46,7 @@ $config = [
             'enableStrictParsing' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'deadline'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'comment'],
             ],
         ],
     ],

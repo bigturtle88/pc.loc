@@ -41,14 +41,14 @@ class DeadlineController extends ActiveController {
                 ->groupBy('deadline.id')
                 ->all();
    
-         $taskUncheked = $query2->select(['deadline.id', 'deadline.text', 'deadline.status', 'deadline.deadline_date', 'COUNT(`comments`.`deadline_id`) AS comments_count'])
+         $taskUnchecked = $query2->select(['deadline.id', 'deadline.text', 'deadline.status', 'deadline.deadline_date', 'COUNT(`comments`.`deadline_id`) AS comments_count'])
                 ->from('deadline')
                 ->join('LEFT JOIN', 'comments', '`deadline`.`id` = `comments`.`deadline_id`')
                 ->where('`deadline`.`status` = 0')
                 ->groupBy('`deadline`.`id`')
                 ->all();
 
-        return $task + $taskUncheked;
+        return array_merge($task, $taskUnchecked);
     }
 
 }

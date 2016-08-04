@@ -21,10 +21,10 @@ class TodoController extends Controller {
         
     }
     
-    public function actionDeadlineView() {
+    public function actionDeadlineView($id) {
+        $id = (int)$id;
          $modelComment = new Comment();
-      
-        return $this->render('deadlineView',['model'=> $modelComment ]);
+         return $this->render('deadlineView',['model'=> $modelComment, 'idDeadline' => $id ]);
         
     }    
     

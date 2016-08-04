@@ -14,11 +14,14 @@ $this->title = 'Todo task';
 
   <div class="row">
     <div class="col-xs-5 text-center">
-      <div id="deadlineView" class="list-unstyled">
+     <ul id="deadlineView" class="list-unstyled" data-id="<?= $idDeadline ?>">
 
 
-      <div>
+      </ul>
+    <ul id="commentsView" class="list-unstyled">
 
+
+      </ul>
       <?=
       CreateComment::widget([
         'model' => $model,

@@ -7,6 +7,7 @@ use app\components\CreateDeadline;
 
 $this->title = 'Todo task';
 ?>
+ 
 <div class="site-index">
 </div>
 
