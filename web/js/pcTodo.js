@@ -60,20 +60,22 @@ var AppTodo = {
         $("#todoTable").html('');
         $.each(data, function (key, val) {
 
-            stylCheckedState = (val.status == 1) ? styleChecked : styleUnchecked;
-            //   console.log(val);
+            styleCheckedState = (val.status == 1) ? styleChecked : styleUnchecked;
+            val.text = (val.status == 1) ? "<del>" + val.text + "</del>" : val.text;
+
             var checked = 'glyphicon glyphicon-check';
             $("#todoTable").append('<li data-id="' + val.id + '">\n\
                             <div class="panel panel-success">\n\
                             <div class="panel-body">\n\
                             <div class="col-xs-2"><a href="#" >\n\
-                            <span class="' + stylCheckedState + '"   data-id="' + val.id + '">\n\
+                            <span class="' + styleCheckedState + '"   data-id="' + val.id + '">\n\
                             </span></a></div><div class="col-xs-5">' + val.text + '</div>\n\
                             <div class="col-xs-3">' + val.deadline_date + '</div>\n\
                             <div class="col-xs-2"><span class="badge">' + val.comments_count + '</span></div></div>\n\
                             </div></li>');
         }
-        )
+        );
+
     },
     CreateDeadline: function (data) {
 
@@ -86,14 +88,14 @@ var AppTodo = {
             success: function (data, textStatus, jqXHR) {
 
                 console.log("Ok: AddDeadline");
-                  AppTodo.init();
+                AppTodo.init();
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
                 console.log("Error: AddDeadline");
             }
         });
-        
+
     },
     UpdateDeadline: function (id, status) {
         var _status = {};
@@ -120,7 +122,7 @@ var AppTodo = {
         var status = 0;
         console.log(id);
         AppTodo.UpdateDeadline(id, status);
-         AppTodo.init();
+        AppTodo.init();
     },
     InitCheckedDeadline: function (event) {
 
@@ -128,7 +130,7 @@ var AppTodo = {
         var id = target.attr('data-id');
         var status = 1;
         console.log(id);
-  
+
 
         AppTodo.UpdateDeadline(id, status);
         AppTodo.init();

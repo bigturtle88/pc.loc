@@ -6,6 +6,7 @@ use Yii;
 
 use yii\web\Controller;
 use app\models\Deadline;
+use app\models\Comment;
 class TodoController extends Controller {
 
     /**
@@ -19,5 +20,13 @@ class TodoController extends Controller {
         return $this->render('index',['model'=>$modelDeadline]);
         
     }
+    
+    public function actionDeadlineView($id) {
+         $modelComment = new Comment();
+      
+        return $this->render('deadlineView',['model'=> $modelComment ]);
+        
+    }    
+    
 
 }
