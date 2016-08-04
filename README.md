@@ -1,102 +1,28 @@
-Yii 2 Basic Project Template
+Todo task (Yii2)
 ============================
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
+Выводится список задач, отсортированный сперва по факту выполнения, затем по дате дедлайна. Список выводим в формате: “<checkbox> текст задачи, дедлайн, количество комментариев”. Чекбокс кликабелен, в случае его нажатия, выполняется AJAX запрос, задача помечается выполненной и список задач перестраивается (без перезагрузки страницы). Выполненные задачи – зачеркнуты.
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+Ниже списка – форма добавления новой задачи. А именно: 1 инпут для ввода текста, второй – дедлайн. На поле дедлайн навешиваем datepicker. Добавление задач также AJAX-ом, с предварительной frontend-валидацией.
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-basic/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
+Каждая задача – ссылка, по клику на нее попадаем на страницу задачи.
+Страница задачи
+Выводим:
+checkbox выполнения задачи (также кликабельный, по клику просто помечаем задачу выполненной. Рекомендуется переиспользовать JS-код для назначения задачи выполненной с главной страницы, тем не менее, учесть, что на главной необходимо обнавление списка задач, а здесь – нет).
+заголовок задачи
+дедлайн
 
-DIRECTORY STRUCTURE
--------------------
+Ниже: список комментариев, отсортированный по дате в порядке добавления.
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
+Ниже: форма добавления комментариев. Имя + текст комментария.
+================================
+Установка: 1. https://github.com/bigturtle88/pc.loc.git
 
+2. Создать БД (например pc.loc)
 
+3. Внести настройки в файл pc.loc/config/web.php (root 1234567)
 
-REQUIREMENTS
-------------
+4. Запустить миграции php yii migrate
 
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
-
-
-INSTALLATION
-------------
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-php composer.phar global require "fxp/composer-asset-plugin:~1.1.1"
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
-
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
+=================================
+===================================

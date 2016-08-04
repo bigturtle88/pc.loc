@@ -7,36 +7,35 @@ use yii\base\Widget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
- 
 
 class CreateComment extends Widget {
 
-  public $text;
-  public $name;
-  public $model = false;
+    public $text;
+    public $name;
+    public $model = false;
 
-  public function init() {
+    public function init() {
 
-    parent::init();
-  }
+        parent::init();
+    }
 
-  public function run() {
+    public function run() {
 
-    $form = ActiveForm::begin([
-      'id' => 'AddCommentForm',
-      'options' => ['class' => 'panel-body', 'onsubmit' => "return false"]]);
+        $form = ActiveForm::begin([
+                    'id' => 'AddCommentForm',
+                    'options' => ['class' => 'panel-body', 'onsubmit' => "return false"]]);
+        echo $form->field($this->model, 'deadline_id')->hiddenInput(['value' => (int) Yii::$app->request->get('id', 0)])
+                ->label('');
 
-    echo $form->field($this->model, 'name')->input('name')
-      ->label('Name');
-    
-    echo $form->field($this->model, 'text')->input('text')
-      ->label('Text Comment');
+        echo $form->field($this->model, 'name')->input('name')
+                ->label('Name');
 
-   
+        echo $form->field($this->model, 'text')->input('text')
+                ->label('Text Comment');
 
-    echo Html::submitButton('Add Comment', ['class' => 'btn btn-info', 'onClick' => 'AppTodo.CreateComment($("#AddCommentForm"));']);
+        echo Html::submitButton('Add Comment', ['class' => 'btn btn-info', 'onClick' => 'AppTodo.CreateComment($("#AddCommentForm"));']);
 
-    ActiveForm::end();
-  }
+        ActiveForm::end();
+    }
 
 }
