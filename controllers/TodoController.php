@@ -21,7 +21,7 @@ class TodoController extends Controller {
         
     }
     
-    public function actionDeadlineView($id) {
+    public function actionDeadlineView() {
          $modelComment = new Comment();
       
         return $this->render('deadlineView',['model'=> $modelComment ]);

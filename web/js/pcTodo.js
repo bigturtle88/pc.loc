@@ -7,7 +7,7 @@
 
 var AppTodo = {
     defaultUrl: 'http://' + window.location.hostname,
-    restUrl: 'http://' + window.location.hostname + '/web/deadlines',
+    restUrl: 'http://' + window.location.hostname + '/deadlines',
     init: function () {
         var _this = this;
         _this.InitTodo(_this);

@@ -20,9 +20,9 @@ class Comment extends ActiveRecord
     public function rules()
     {
         return [
-            // text and deadline_date are both required
+            // text and name are both required
             [['text','name'], 'required'],
-             ['status', 'default', 'value' => 0],
+         
           ];
     }
     

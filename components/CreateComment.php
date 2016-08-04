@@ -26,7 +26,7 @@ class CreateComment extends Widget {
       'id' => 'AddCommentForm',
       'options' => ['class' => 'panel-body', 'onsubmit' => "return false"]]);
 
-    echo $form->field($this->model, 'name')->input('text')
+    echo $form->field($this->model, 'name')->input('name')
       ->label('Name');
     
     echo $form->field($this->model, 'text')->input('text')
