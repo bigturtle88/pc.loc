@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use app\components\AddDeadline;
+use app\components\CreateDeadline;
 
 /* @var $this yii\web\View */
 
@@ -20,7 +20,7 @@ $this->title = 'Todo task';
       </ul>
 
       <?=
-      AddDeadline::widget([
+      CreateDeadline::widget([
         'model' => $model,
       ]);
       ?>

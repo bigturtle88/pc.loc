@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use dosamigos\datepicker\DatePicker;
 
-class AddDeadline extends Widget {
+class CreateDeadline extends Widget {
 
   public $text;
   public $date;
@@ -41,7 +41,7 @@ class AddDeadline extends Widget {
       ]
     ]);
 
-    echo Html::submitButton('Add Deadline', ['class' => 'btn btn-info', 'onClick' => 'AppTodo.AddDeadline($("#AddDeadlineForm"));']);
+    echo Html::submitButton('Add Deadline', ['class' => 'btn btn-info', 'onClick' => 'AppTodo.CreateDeadline($("#AddDeadlineForm"));']);
 
     ActiveForm::end();
   }
